@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const Price = require('./models/price')
+
 //const views = require('./models')
 //const viewsRouter = require('./routes/view')
 // const methodOverride = require('method-override')
@@ -31,4 +32,4 @@ app.get('/', async (req, res) => {
     res.render('menu/index', { prices: prices })
 })
 
-app.listen(4000, () => console.log('Server Started'))
+app.listen(5000, () => console.log('Server Started'))

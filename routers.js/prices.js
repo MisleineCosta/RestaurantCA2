@@ -5,7 +5,7 @@ const mongoose = require("mongoose"); // to import mongoose
 const price = require("../models/price");
 //GET method
 router.get("/", (req, res, _next) => {
-  price.find() // If I do not pass a arguments, it will find all elements. 
+    price.find() // If I do not pass a arguments, it will find all elements. 
         .exec()// to GET a true prompts. 
         .then(docs => { // .then block has all my products.
             console.log("From database 😁", docs); // to return them. 
@@ -45,7 +45,7 @@ router.post("./", (req, res, _next) => {
     });
     // Creating special object call product.save - Save it's a method provided by mangoose to use on mongosse models. 
     // it will then store this in the DB.
- price
+    price
         .save()
         .then(result => {
             console.log("From database 🤓", result);// I do not need exec() for save(). I will later use it though. 
@@ -75,7 +75,7 @@ router.post("./", (req, res, _next) => {
                });
            }
            and instead that👆🏼 I will use the new productModel called findBy. It was imported on the top - (line 5). */
-       price.findBy(id)
+        price.findBy(id)
             .exec()// To send response when I get the DB. 
             .then(doc => { // To send response when I get the DB.
                 console.log("From database 😉", doc); //simple logged to the console
@@ -134,5 +134,5 @@ router.post("./", (req, res, _next) => {
                 });
         });
         module.exports = router;
-    })
+      })
 });
