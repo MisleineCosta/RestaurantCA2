@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-//const static = require('./models/static')
-//const staticRouter = require('./routes/static')
-//const methodOverride = require('method-override')
+//const views = require('./models/view')
+//const viewsRouter = require('./routes/view')
+// const methodOverride = require('method-override')
 
 
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true })
@@ -16,7 +16,7 @@ app.use(express.static('views'))
 //app.use(methodOverride('_method'))
 //app.use(express.json({ extended: false }))
 
-//const productRouters = require('./api/routers/products');
+//const pricesRouters = require('./routers/prices');
 //const orderRouters = require('./api/routers/orders');
 
 app.get('/', (req, res) => {
@@ -25,4 +25,4 @@ app.get('/', (req, res) => {
 
 })
 
-app.listen(8000, () => console.log('Server Started'))
+app.listen(6000, () => console.log('Server Started'))

@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose"); // to import mongoose
 
-const Product = require("../models/product");
+const price = require("../models/price");
 //GET method
 router.get("/", (req, res, _next) => {
-    Product.find() // If I do not pass a arguments, it will find all elements. 
+  price.find() // If I do not pass a arguments, it will find all elements. 
         .exec()// to GET a true prompts. 
         .then(docs => { // .then block has all my products.
             console.log("From database 😁", docs); // to return them. 
@@ -38,20 +38,20 @@ router.post('./', (req, res, next) => {
 
 // To Create Product Object - with helps of mongoose.
 router.post("./", (req, res, _next) => {
-    const product = new Product({
+    const price = new price({
         _id: new mongoose.Types.ObjectId(), // It create auto Id for me that will be a unique Id wich I cannot get it twice. 
         name: req.body.name, // add name of curse this name will be request body's name and set up price what request body's price of product.
         price: req.body.price,
     });
     // Creating special object call product.save - Save it's a method provided by mangoose to use on mongosse models. 
     // it will then store this in the DB.
-    product
+ price
         .save()
         .then(result => {
             console.log("From database 🤓", result);// I do not need exec() for save(). I will later use it though. 
             res.status(201).json({ //Success response back within the success response call-back👇🏼
                 message: "Handling POST requests to /products",
-                createProduct: result
+                createPrice: result
             });
         })
         .catch(err => {
@@ -61,8 +61,8 @@ router.post("./", (req, res, _next) => {
             })
         });
     // To Check return of Data - GET the product of ID. For that I will comment the damic code below👇🏼.
-    router.get("/:productId", (req, res, _next) => {
-        const id = req.params.productId;
+    router.get("/:priceId", (req, res, _next) => {
+        const id = req.params.priceId;
         /*  if (id == "special") {
             res.status(200).json({
                massage: "You discovered the special ID",
@@ -75,7 +75,7 @@ router.post("./", (req, res, _next) => {
                });
            }
            and instead that👆🏼 I will use the new productModel called findBy. It was imported on the top - (line 5). */
-        Product.findBy(id)
+       price.findBy(id)
             .exec()// To send response when I get the DB. 
             .then(doc => { // To send response when I get the DB.
                 console.log("From database 😉", doc); //simple logged to the console
@@ -92,14 +92,14 @@ router.post("./", (req, res, _next) => {
             });
     });
     // set up the method call productId
-    router.patch("/:productId", (req, res, next) => {
-        const id = req.params.productId;
+    router.patch("/:pricetId", (req, res, next) => {
+        const id = req.params.pricetId;
         const updateOps = {}; // to update Operations
         for (const ops of req.body) { // loop through all the Ops of my request body.
             // array here👇🏼 to pass data
             updateOps[ops.propName] = ops.value;
         }
-        Product.update({ _id: id },
+        price.update({ _id: id },
             {
                 $set: updateOps
             }) // No key value parse, we must change the name /or the price.
@@ -117,11 +117,11 @@ router.post("./", (req, res, _next) => {
                 });
             });
 
-        router.delete("/:productId", (req, res, next) => {
+        router.delete("/:priceId", (req, res, next) => {
             // res.status(200).json({
             //message: "Deleted product!"
-            const id = req.params.productId; // it GETs the Id from my URL
-            Product.remove({ _id: id })// it removes value from the collection. 
+            const id = req.params.priceId; // it GETs the Id from my URL
+            price.remove({ _id: id })// it removes value from the collection. 
                 .exec()
                 .the(result => {
                     res.status(200).json(result);
