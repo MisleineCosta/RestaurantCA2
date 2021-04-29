@@ -10,21 +10,25 @@ const Price = require('./models/price')
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true })
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
-db.once('open', () => console.log('Connected to Database'))
+db.once('open', () => console.log('From mongoDB: Connected to Database'))
 
 app.set('view engine', 'ejs')
 app.use(express.static('views/menu'))
+
+app.use('/price', (req, res) => {
+   
+})
 //app.use(methodOverride('_method'))
 //app.use(express.json({ extended: false }))
 
 //const pricesRouters = require('./routers/prices');
 //const orderRouters = require('./api/routers/orders');
 
-app.get('/', (req, res) => {
-const price = await Price.find();
+app.get('/', async (req, res) => {
+  const prices = await Price.find();
 
-    res.render('menu/index', { price: price })
 
+    res.render('menu/index', { prices: prices })
 })
 
-app.listen(6000, () => console.log('Server Started'))
+app.listen(4000, () => console.log('Server Started'))
