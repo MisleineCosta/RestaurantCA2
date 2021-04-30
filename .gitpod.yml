@@ -14,3 +14,9 @@ github:
     addBadge: false
     # add a label once the prebuild is ready to pull requests (defaults to false)
     addLabel: prebuilt-in-gitpod
+
+image:
+  file: .gitpod.Dockerfile
+tasks:
+  - name: Running MongoDB
+    command: npm i -g nodemon && mkdir -p data && mongod --dbpath
