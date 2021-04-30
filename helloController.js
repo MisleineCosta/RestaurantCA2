@@ -3,7 +3,7 @@ exports.getWorld = function(req,res){
 }
 
 exports.getWorldParams = function(req,res){
-    res.json({message: 'RESTful API with Node.js: Interactive Web Application,CA1 seeking out CA2 ', data: [
+    res.json({message: 'RESTful API with Node.js: Interactive Web Application,CA1 seeking out CA2', data: [
         req.params.foo,
         req.params.bar
     ]});
