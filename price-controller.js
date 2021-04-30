@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose"); // to import mongoose
 
-const Product = require("../models/product");
+const Price = require("../models/price");
 //GET method
 router.get("/", (req, res, _next) => {
-    Product.find() // If I do not pass a arguments, it will find all elements. 
+    Price.find() // If I do not pass a arguments, it will find all elements. 
         .exec()// to GET a true prompts. 
-        .then(docs => { // .then block has all my products.
+        .then(docs => { // .then block has all my prices.
             console.log("From database 😁", docs); // to return them. 
             //   if (docs.length >= 0) { // to check within the array in case of the error.
             res.status(200).json(docs);
@@ -27,30 +27,30 @@ router.get("/", (req, res, _next) => {
         });
 });
 
-/* I do not need this code for product anymore, because I set up the request product code onto line 19. 
+/* I do not need this code for price anymore, because I set up the request price code onto line 19. 
 This👇🏼 can be removed.
 router.post('./', (req, res, next) => {
-    const product = {
+    const price = {
         name: req.body.name,
         price: req.body.price
     };
     */
 
-// To Create Product Object - with helps of mongoose.
+// To Create Price Object - with helps of mongoose.
 router.post("./", (req, res, _next) => {
-    const product = new Product({
+    const price = new Price({
         _id: new mongoose.Types.ObjectId(), // It create auto Id for me that will be a unique Id wich I cannot get it twice. 
-        name: req.body.name, // add name of curse this name will be request body's name and set up price what request body's price of product.
+        name: req.body.name, // add name of curse this name will be request body's name and set up price what request body's price of price.
         price: req.body.price,
     });
-    // Creating special object call product.save - Save it's a method provided by mangoose to use on mongosse models. 
+    // Creating special object call price.save - Save it's a method provided by mangoose to use on mongosse models. 
     // it will then store this in the DB.
-    product
+    price
         .save()
         .then(result => {
             console.log("From database 🤓", result);// I do not need exec() for save(). I will later use it though. 
             res.status(201).json({ //Success response back within the success response call-back👇🏼
-                message: "Handling POST requests to /products",
+                message: "Handling POST requests to /prices",
                 createProduct: result
             });
         })
@@ -61,8 +61,8 @@ router.post("./", (req, res, _next) => {
             })
         });
     // To Check return of Data - GET the product of ID. For that I will comment the damic code below👇🏼.
-    router.get("/:productId", (req, res, _next) => {
-        const id = req.params.productId;
+    router.get("/:priceId", (req, res, _next) => {
+        const id = req.params.priceId;
         /*  if (id == "special") {
             res.status(200).json({
                massage: "You discovered the special ID",
@@ -74,8 +74,8 @@ router.post("./", (req, res, _next) => {
                            
                });
            }
-           and instead that👆🏼 I will use the new productModel called findBy. It was imported on the top - (line 5). */
-        Product.findBy(id)
+           and instead that👆🏼 I will use the new priceModel called findBy. It was imported on the top - (line 5). */
+        Price.findBy(id)
             .exec()// To send response when I get the DB. 
             .then(doc => { // To send response when I get the DB.
                 console.log("From database 😉", doc); //simple logged to the console
@@ -92,19 +92,19 @@ router.post("./", (req, res, _next) => {
             });
     });
     // set up the method call productId
-    router.patch("/:productId", (req, res, next) => {
-        const id = req.params.productId;
+    router.patch("/:priceId", (req, res, next) => {
+        const id = req.params.priceId;
         const updateOps = {}; // to update Operations
         for (const ops of req.body) { // loop through all the Ops of my request body.
             // array here👇🏼 to pass data
             updateOps[ops.propName] = ops.value;
         }
-        Product.update({ _id: id },
+        Price.update({ _id: id },
             {
                 $set: updateOps
             }) // No key value parse, we must change the name /or the price.
             //   { name: req.body.newName, 
-            //   price: req.body.newPrice // to use the Product model + update method. 
+            //   price: req.body.newPrice // to use the Price model + update method. 
             .exec()
             .then(result => {
                 console.log("From database 😃", result);
@@ -117,11 +117,11 @@ router.post("./", (req, res, _next) => {
                 });
             });
 
-        router.delete("/:productId", (req, res, next) => {
+        router.delete("/:priceId", (req, res, next) => {
             // res.status(200).json({
-            //message: "Deleted product!"
-            const id = req.params.productId; // it GETs the Id from my URL
-            Product.remove({ _id: id })// it removes value from the collection. 
+            //message: "Deleted price!"
+            const id = req.params.priceId; // it GETs the Id from my URL
+            Price.remove({ _id: id })// it removes value from the collection. 
                 .exec()
                 .the(result => {
                     res.status(200).json(result);
