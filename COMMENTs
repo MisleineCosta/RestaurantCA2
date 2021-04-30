@@ -1,6 +1,7 @@
 
 // TO ADD HEROKU 
 npm i -g heroku
+$ brew install git-gui
 heroku login -i
 heroku status
 heroku create --region eu
@@ -10,3 +11,29 @@ git push heroku master
 git push heroku main  
 heroku logs
 //
+$ heroku git:clone -a agile-cove-82309
+$ cd agile-cove-82309
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
+
+//
+
+node --version
+v14.15.4
+npm --version
+6.14.11
+git --version
+git version 2.28.0
+
+//
+heroku login
+heroku: Press any key to open up the browser to login or q to exit
+ ›   Warning: If browser does not open, visit
+ ›   https://cli-auth.heroku.com/auth/browser/***
+heroku: Waiting for login...
+Logging in... done
+Logged in as me@example.com
+
+//
+$ brew install git-gui
