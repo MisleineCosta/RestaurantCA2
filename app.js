@@ -34,7 +34,7 @@ app.get('/', async (req, res) => {
     res.render('menu/index', { prices: prices });
 });
 
-app.listen(3000, () => console.log('Server Started'));
+app.listen(8000, () => console.log('Server Started'));
  //module.exports = app;
 
 
