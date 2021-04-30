@@ -3,7 +3,7 @@ const app = express()
 const mongoose = require('mongoose');
 const Price = require('./models/price');
 const morgan = require("morgan");
-const productRoutes = require("./routers/prices");
+//const priceRouters = require("./routers/prices");
 
 //const views = require('./models')
 //const viewsRouter = require('./routes/view')
