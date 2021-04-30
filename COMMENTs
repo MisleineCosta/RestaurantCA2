@@ -48,4 +48,4 @@ Logging in... done
 Logged in as me@example.com
 
 //
-$ brew install git-gui
+git rm -r node-models data .env
