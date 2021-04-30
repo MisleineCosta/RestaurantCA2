@@ -27,6 +27,18 @@ git --version
 git version 2.28.0
 
 //
+If you use npm:
+git rm yarn.lock
+git commit -m "Remove yarn lock file"
+git push heroku master
+//
+
+If you use yarn:
+git rm package-lock.json
+git commit -m "Remove npm lock file"
+git push heroku master
+//
+
 heroku login
 heroku: Press any key to open up the browser to login or q to exit
  ›   Warning: If browser does not open, visit
