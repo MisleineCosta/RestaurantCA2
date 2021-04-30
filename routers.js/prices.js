@@ -36,7 +36,7 @@ router.post('./', (req, res, next) => {
     };
     */
 
-// To Create Product Object - with helps of mongoose.
+// To Create Price Object - with helps of mongoose.
 router.post("./", (req, res, _next) => {
     const price = new price({
         _id: new mongoose.Types.ObjectId(), // It create auto Id for me that will be a unique Id wich I cannot get it twice. 
@@ -74,7 +74,7 @@ router.post("./", (req, res, _next) => {
                            
                });
            }
-           and instead that👆🏼 I will use the new productModel called findBy. It was imported on the top - (line 5). */
+           and instead that👆🏼 I will use the new priceModel called findBy. It was imported on the top - (line 5). */
         price.findBy(id)
             .exec()// To send response when I get the DB. 
             .then(doc => { // To send response when I get the DB.
@@ -91,7 +91,7 @@ router.post("./", (req, res, _next) => {
                 res.status(500).json({ error: err }); // to send .json response. The status of this code is 500 thought, if something fails in the DB.
             });
     });
-    // set up the method call productId
+    // set up the method call pricetId
     router.patch("/:pricetId", (req, res, next) => {
         const id = req.params.pricetId;
         const updateOps = {}; // to update Operations
@@ -119,7 +119,7 @@ router.post("./", (req, res, _next) => {
 
         router.delete("/:priceId", (req, res, next) => {
             // res.status(200).json({
-            //message: "Deleted product!"
+            //message: "Deleted price!"
             const id = req.params.priceId; // it GETs the Id from my URL
             price.remove({ _id: id })// it removes value from the collection. 
                 .exec()
