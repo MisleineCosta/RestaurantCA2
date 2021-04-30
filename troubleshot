@@ -51,5 +51,11 @@ Logged in as me@example.com
 git rm -r node-models data .env
 
 //
+
 DB_URL = "mongodb+srv://new-user:vY6aKdgtXMzdFZtw@costa.xrtym.mongodb.net"
+
+//
+
+Check out the branch you're interested in (i.e. which belongs to the video in my series you just watched), git clone it and thereafter run npm install.
+
 //
