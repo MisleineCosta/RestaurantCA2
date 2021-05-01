@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const mongoose = require('mongoose');
 const Price = require('./models/price');
-const morgan = require("morgan");
+const morgan = require('morgan');
 //const priceRouters = require("./routers/prices");
 
 //const views = require('./models')
