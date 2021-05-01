@@ -1,7 +1,7 @@
 // getting the express package
 const express = require('express') 
 // getting the model
-const Price = require('../models/price') 
+const Price = require('./models/price') 
 const router = express.Router()
 
 // difining the route carparts new and rendering the static page. And a form is used to pass the user input to the api.
@@ -52,7 +52,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res) => {
 //finding the document and deleting the document from the collection
     await Price.findByIdAndDelete(req.params.id)
-    res.redirect('/#products')// rediricting the user to products page.
+    res.redirect('routers/prices')// rediricting the user to products page.
 })
 //this function is used to pass all the user input to schema to create/ update
 function savePriceAndRedirect(path) { 
@@ -65,7 +65,7 @@ function savePriceAndRedirect(path) {
 // everything is saved to the database collection            
             price = await price.save() 
 // redirect user to the product page.
-            res.redirect(`/#products`)
+            res.redirect(`routers/prices`)
         } catch (e) {
 
 // sending a status code 400 if we have a bad request.
