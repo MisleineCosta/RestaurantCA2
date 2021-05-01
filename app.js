@@ -17,10 +17,11 @@ db.once('open', () => console.log('From mongoDB: Connected to Database'));
 
 app.set('view engine', 'ejs')
 app.use(express.static('views/menu'));
+// app.use(require('./routers/prices'));
 
-app.use('/price', (req, res) => {
+// app.use('/price', (req, res) => {
    
-});
+// });
 //app.use(methodOverride('_method'))
 //app.use(express.json({ extended: false }))
 

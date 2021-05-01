@@ -3,7 +3,7 @@ const express = require('express')
 router = express.Router();
 
 //Price routes CRU
-priceCtrl = require('/price-controller');
+priceCtrl = require('./price-controller');
 //CREATE USER/ products are the table find on the collection
 router.post('/prices', priceCtrl.createPrice);
 router.get('/prices', priceCtrl.getPrices); // to read all data

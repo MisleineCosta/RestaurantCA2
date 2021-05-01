@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose"); // to import mongoose
 
-const Price = require("../models/price");
+const Price = require("./models/price");
 //GET method
 router.get("/", (req, res, _next) => {
     Price.find() // If I do not pass a arguments, it will find all elements. 
